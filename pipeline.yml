@@ -1,0 +1,22 @@
+
+jobs:
+- name: apply-terraform
+  plan:
+  - aggregate:
+    - get: repo
+    - get: pcf-ops-image
+  - task: tf-init-and-apply
+    image: pcf-ops-image
+    file: repo/tasks/init-and-apply/task.sh
+    input_mapping:
+      tfvars: interpolated-files
+      task-definitions: repo
+      terraform-config: repo
+    params:
+      TF_CONFIG_PATH: foundations/((foundation))/terraform
+      TFVARS_FILES: foundations/((foundation))/tfvars/*.tfvars
+      BACKEND_BUCKET:
+      BACKEND_KEY:
+      BACKEND_ENDPOINT:
+      BACKEND_ACCESS_KEY:
+      BACKEND_SECRET_KEY:
