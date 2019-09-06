@@ -5,6 +5,8 @@ jobs:
   - aggregate:
     - get: repo
     - get: pcf-ops-image
+  - task: credhub-interpolate
+    <<complete task definition>>
   - task: tf-init-and-apply
     image: pcf-ops-image
     file: repo/tasks/init-and-apply/task.sh
