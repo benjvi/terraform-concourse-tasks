@@ -1,0 +1,22 @@
+---
+platform: linux
+
+inputs:
+- name: task-definitions
+- name: tfvars
+- name: terraform-config
+
+outputs:
+- name: tfoutput
+
+params:
+  TF_CONFIG_PATH: 
+  TFVARS_FILES: *.tfvars
+  BACKEND_BUCKET:
+  BACKEND_KEY:
+  BACKEND_ENDPOINT:
+  BACKEND_ACCESS_KEY:
+  BACKEND_SECRET_KEY:
+
+run:
+  path: task-definitions/tasks/init-and-apply/task.sh
